@@ -43,9 +43,12 @@ app.post('/api/message', express.json(), async (req, res) => {
   });
   const data = await response.json();
   res.json(data.choices[0].message.content);
+
+  // const responseAI = data.choices[0].message.content;
+  // document.getElementById()
+  // console.log(responseAI)
 });
 
-//
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);

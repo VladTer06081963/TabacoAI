@@ -9,6 +9,7 @@ async function getData() {
 
   document.getElementById('messages').innerHTML =
     `<div class="mess-user">
+    <h3>Ваш запрос принят...</h3> 
 			<p>${userData}</p>
 	</div>` + document.getElementById('messages').innerHTML;
   document.getElementById('input').value = '';
