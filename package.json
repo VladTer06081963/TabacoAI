@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.mjs",
   "scripts": {
-    "start": "node --experimental-modules index.mjs",
-    "dev": "nodemon --experimental-modules index.mjs"
+    "start": "node --experimental-modules index.mjs"
+   
   },
   "author": "WladTer",
   "license": "ISC",
