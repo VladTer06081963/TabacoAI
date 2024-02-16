@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 
 * {
   margin: 0;
@@ -8,7 +8,8 @@
 body {
   background: #343541;
   color: #ececf1;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
+  width: 100%;
 }
 
 header {
@@ -109,7 +110,7 @@ form input {
   background: #40414f;
   border-radius: 5px;
   padding: 15px 20px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   border: 1px solid transparent;
   color: #ececf1;
   outline: none;
@@ -122,4 +123,29 @@ form input:focus {
 
 form input::-webkit-input-placeholder {
   color: #6c6e83;
+}
+
+/* loader */
+.loader {
+  display: none; /* Скрыть лоадер по умолчанию */
+}
+
+/* Стили для отображения лоадера, например, анимация вращения */
+
+.loader {
+  border: 4px solid #f3f3f3; /* Цвет фона */
+  border-top: 4px solid #3498db; /* Цвет анимации */
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
