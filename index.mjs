@@ -36,7 +36,7 @@ app.post("/api/message", express.json(), async (req, res) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      model: "gpt-4-0125-preview",
+      model: "gpt-3.5-turbo-0125",
       messages: [{ role: "user", content: userData }],
       max_tokens: 1000,
     }),
