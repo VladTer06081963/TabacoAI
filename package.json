@@ -5,7 +5,6 @@
   "main": "index.mjs",
   "scripts": {
     "start": "node --experimental-modules index.mjs"
-   
   },
   "author": "WladTer",
   "license": "ISC",

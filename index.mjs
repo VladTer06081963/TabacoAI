@@ -49,7 +49,7 @@ app.post("/api/message", express.json(), async (req, res) => {
   // console.log(responseAI)
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3150;
 app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}`);
+  console.log(`Server started on port ${PORT}...`);
 });
