@@ -29,6 +29,7 @@ app.get("/user/:username", (req, res) => {
 
 app.post("/api/message", express.json(), async (req, res) => {
   const userData = req.body.content;
+  // console.log(userData);
   const response = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {
@@ -42,12 +43,24 @@ app.post("/api/message", express.json(), async (req, res) => {
     }),
   });
   const data = await response.json();
-  res.json(data.choices[0].message.content);
-
-  // const responseAI = data.choices[0].message.content;
-  // document.getElementById()
-  // console.log(responseAI)
+  // console.log(data);
+  // Проверка на наличие необходимых данных перед их использованием
+  if (data.choices && data.choices.length > 0 && data.choices[0].message) {
+    res.json(data.choices[0].message.content);
+  } else {
+    // Возвращаем ошибку или информационное сообщение, если ожидаемые данные отсутствуют
+    res
+      .status(500)
+      .json({ error: "Не удалось получить ожидаемый ответ от API." });
+  }
 });
+
+// res.json(data.choices[0].message.content);
+
+// const responseAI = data.choices[0].message.content;
+// document.getElementById()
+// console.log(responseAI)
+// });
 
 const PORT = process.env.PORT || 3150;
 app.listen(PORT, () => {
