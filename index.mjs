@@ -26,41 +26,41 @@ app.get("/user/:username", (req, res) => {
   };
   res.render("user", data);
 });
-
 app.post("/api/message", express.json(), async (req, res) => {
-  const userData = req.body.content;
-  // console.log(userData);
-  const response = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${process.env.API_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      model: "gpt-3.5-turbo-0125",
-      messages: [{ role: "user", content: userData }],
-      max_tokens: 1000,
-    }),
-  });
-  const data = await response.json();
-  // console.log(data);
-  // Проверка на наличие необходимых данных перед их использованием
-  if (data.choices && data.choices.length > 0 && data.choices[0].message) {
-    res.json(data.choices[0].message.content);
-  } else {
-    // Возвращаем ошибку или информационное сообщение, если ожидаемые данные отсутствуют
+  try {
+    const userData = req.body.content;
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: "gpt-3.5-turbo-0125",
+        messages: [{ role: "user", content: userData }],
+        max_tokens: 1000,
+      }),
+    });
+
+    const data = await response.json(); // Попытка асинхронного получения данных
+
+    // Проверка на наличие необходимых данных перед их использованием
+    if (data.choices && data.choices.length > 0 && data.choices[0].message) {
+      res.json(data.choices[0].message.content);
+    } else {
+      // Возвращаем ошибку или информационное сообщение, если ожидаемые данные отсутствуют
+      res
+        .status(500)
+        .json({ error: "Не удалось получить ожидаемый ответ от API." });
+    }
+  } catch (error) {
+    // Обработка ошибок, возникающих при запросе или обработке данных
+    console.error("Произошла ошибка:", error);
     res
       .status(500)
-      .json({ error: "Не удалось получить ожидаемый ответ от API." });
+      .json({ error: "Произошла ошибка при обработке вашего запроса." });
   }
 });
-
-// res.json(data.choices[0].message.content);
-
-// const responseAI = data.choices[0].message.content;
-// document.getElementById()
-// console.log(responseAI)
-// });
 
 const PORT = process.env.PORT || 3150;
 app.listen(PORT, () => {

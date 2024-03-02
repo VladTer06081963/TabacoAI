@@ -17,6 +17,12 @@ header {
   padding: 10px;
 }
 
+footer {
+  background-color: #343541;
+  padding: 10px;
+  text-align: center;
+}
+
 nav ul {
   list-style-type: none;
   margin: 0;
@@ -52,6 +58,7 @@ h1 {
 }
 
 h3 {
+  text-align: center;
   color: red;
 }
 
@@ -138,11 +145,21 @@ form input::-webkit-input-placeholder {
 
 .loader {
   border: 4px solid #f3f3f3; /* Цвет фона */
-  border-top: 4px solid #3498db; /* Цвет анимации */
+  border-top: 4px solid #ff0000; /* Цвет анимации */
   border-radius: 50%;
   width: 30px;
   height: 30px;
   animation: spin 2s linear infinite;
+}
+
+footer a {
+  text-decoration: none;
+  color: #ececf1;
+  padding: 5px;
+}
+
+footer a:hover {
+  color: #ff0000;
 }
 
 @keyframes spin {
@@ -152,4 +169,17 @@ form input::-webkit-input-placeholder {
   100% {
     transform: rotate(360deg);
   }
+}
+/* ----------------------- */
+
+.dropdown {
+  cursor: pointer;
+  padding: 10px;
+  border: 1px solid #ff0000;
+}
+.dropdown-content {
+  display: none;
+  margin-top: 5px;
+  border: 1px solid #ff0000;
+  padding: 10px;
 }
