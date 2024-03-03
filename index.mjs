@@ -1,6 +1,7 @@
+// Предполагается, что этот код находится в файле, где вы настраиваете ваше Express-приложение
 import express from "express";
-import fetch from "node-fetch"; // используем import вместо require
 import dotenv from "dotenv";
+import openAIRequest from "./utils/openaiRequest.js"; // Обратите внимание на .js в концеopenaiRequest"; // Убедитесь, что путь к файлу верный
 
 dotenv.config();
 
@@ -26,39 +27,13 @@ app.get("/user/:username", (req, res) => {
   };
   res.render("user", data);
 });
+
 app.post("/api/message", express.json(), async (req, res) => {
-  try {
-    const userData = req.body.content;
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${process.env.API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: "gpt-3.5-turbo-0125",
-        messages: [{ role: "user", content: userData }],
-        max_tokens: 1000,
-      }),
-    });
-
-    const data = await response.json(); // Попытка асинхронного получения данных
-
-    // Проверка на наличие необходимых данных перед их использованием
-    if (data.choices && data.choices.length > 0 && data.choices[0].message) {
-      res.json(data.choices[0].message.content);
-    } else {
-      // Возвращаем ошибку или информационное сообщение, если ожидаемые данные отсутствуют
-      res
-        .status(500)
-        .json({ error: "Не удалось получить ожидаемый ответ от API." });
-    }
-  } catch (error) {
-    // Обработка ошибок, возникающих при запросе или обработке данных
-    console.error("Произошла ошибка:", error);
-    res
-      .status(500)
-      .json({ error: "Произошла ошибка при обработке вашего запроса." });
+  const { success, data, error } = await openAIRequest(req.body.content);
+  if (success) {
+    res.json(data);
+  } else {
+    res.status(500).json({ error });
   }
 });
 

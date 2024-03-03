@@ -16,6 +16,9 @@ header {
   background-color: #343541;
   padding: 10px;
 }
+nav a :active {
+  color: red;
+}
 
 footer {
   background-color: #343541;
@@ -182,4 +185,10 @@ footer a:hover {
   margin-top: 5px;
   border: 1px solid #ff0000;
   padding: 10px;
+}
+
+.container-about {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 50px;
 }
