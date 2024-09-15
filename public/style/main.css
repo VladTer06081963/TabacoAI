@@ -140,6 +140,15 @@ form input::-webkit-input-placeholder {
   color: #6c6e83;
 }
 
+button {
+  text-align: center;
+  color: red;
+  background: #40414f;
+  border-color: #d26565;
+  margin-top: 5px;
+
+}
+
 /* loader */
 .loader {
   display: none; /* Скрыть лоадер по умолчанию */

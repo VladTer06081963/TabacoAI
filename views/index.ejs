@@ -20,10 +20,19 @@
       <!-- gpt chat question -->
       <form onsubmit="submitForm(event)">
         <input type="text" id="input" placeholder="Введите ваш вопрос " />
+        <div class="btn">
+          <!-- Кнопка для начала нового диалога -->
+        <button onclick="startNewDialog()">Начать новый диалог</button>
+        </div>
       </form>
 
       <%- include('partials/footer') %>
 
+      <script>
+function reloadPage() {
+    location.reload();
+}
+</script>
         <script src="/js/index.js"></script>
 
   </body>

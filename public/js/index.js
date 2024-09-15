@@ -54,6 +54,120 @@
 
 //New code 
 
+// document.addEventListener("DOMContentLoaded", function () {
+//   const form = document.querySelector("form");
+//   form.addEventListener("submit", submitForm);
+// });
+
+// let messages = [];
+
+// // Сброс истории диалога при начале нового диалога
+// function startNewDialog() {
+//   messages = []; // Обнуление массива истории диалога
+//   clearMessages();
+//    // Очистить область сообщений на странице
+// }
+
+// // Отправка формы
+// function submitForm(event) {
+//   event.preventDefault();
+//   getData();
+// }
+
+// // Получение данных
+// async function getData() {
+//   const userInput = document.getElementById("input").value.trim();
+//   if (userInput === "") return;
+
+//   showUserMessage(userInput);
+//   clearInput();
+//   toggleLoader(true);
+
+//   // Если начат новый диалог, сбросить историю диалога
+//   if (userInput.toLowerCase() === "начать новый диалог") {
+//     startNewDialog();
+//     return;
+//   }
+
+//   // Добавление пользовательского сообщения в историю диалога
+//   messages.push({ role: "user", content: userInput });
+
+//   try {
+//     const response = await fetch("/api/message", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({ content: userInput, messages: messages }),
+//     });
+
+//     const result = await response.json();
+
+//     if (response.ok) {
+//       const botMessage = result.data;
+//       // Добавление ответа бота в историю диалога
+//       messages.push({ role: "assistant", content: botMessage });
+//       toggleLoader(false);
+//       showServerMessage(botMessage);
+//     } else {
+//       throw new Error(result.error);
+//     }
+//   } catch (error) {
+//     console.error("Ошибка:", error);
+//     toggleLoader(false);
+//     showErrorMessage(error.message);
+//   }
+// }
+// // Показать сообщение пользователя
+// function showUserMessage(message) {
+//   const messagesContainer = document.getElementById("messages");
+//   const userMessageHtml = `
+//     <div class="mess-user">
+//       <h3>Ваш запрос принят...</h3>
+//       <div class="loader"></div>
+//       <p>${message}</p>
+//     </div>`;
+//   messagesContainer.innerHTML = userMessageHtml + messagesContainer.innerHTML;
+// }
+// // Показать сообщение сервера
+// function showServerMessage(message) {
+//   const messagesContainer = document.getElementById("messages");
+//   const serverMessageHtml = `
+//     <div class="mess-chat">
+//       <p>${message}</p>
+//     </div>`;
+//   messagesContainer.innerHTML = serverMessageHtml + messagesContainer.innerHTML;
+// }
+// // Показать сообщение об ошибке
+// function showErrorMessage(error) {
+//   const messagesContainer = document.getElementById("messages");
+//   const errorMessageHtml = `
+//     <div class="mess-chat error">
+//       <p>Ошибка: ${error}. Пожалуйста, попробуйте позже.</p>
+//     </div>`;
+//   messagesContainer.innerHTML = errorMessageHtml + messagesContainer.innerHTML;
+// }
+// // Очистить поле ввода
+// function clearInput() {
+//   document.getElementById("input").value = "";
+// }
+// // Переключить отображение загрузчика
+// function toggleLoader(show) {
+//   const loader = document.querySelector(".mess-user .loader");
+//   if (loader) {
+//     loader.style.display = show ? "block" : "none";
+//   }
+// }
+
+// // Очистить область сообщений
+// function clearMessages() {
+//   const messagesContainer = document.getElementById("messages");
+//   messagesContainer.innerHTML = "";
+// }
+
+
+//////////////////////
+
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.querySelector("form");
   form.addEventListener("submit", submitForm);
